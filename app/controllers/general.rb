@@ -13,7 +13,14 @@ helpers do
 end
 
 get '/' do
-  # Look in app/views/index.erb
+  if login?
+  	@username = session[:username]
+  end
+  @posts = Post.last(30)
+  erb :home
+end
+
+get '/news' do
   if login?
   	@username = session[:username]
   end

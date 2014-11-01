@@ -13,6 +13,9 @@ get '/posts' do
 end
 
 get '/posts/:id' do
+	@post = Post.find_by(id: params[:id])
+	@comments = @post.comments
+	erb :'posts/show'
 end
 
 get '/posts/:id/edit' do

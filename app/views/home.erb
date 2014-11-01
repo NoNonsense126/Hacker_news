@@ -49,15 +49,16 @@
               <td class="title"><%= index + 1 %></td>
               <td>
                 <center>
-                  <a id="up_8540279">
+                  <a id="up_8542706" href="vote?for=8542706&amp;dir=up&amp;whence=%69%74%65%6d%3f%69%64%3d%38%35%34%32%37%30%36">
                     <div class="votearrow" title="upvote"></div>
                   </a>
+                  <span id="down_8542706"></span>
                 </center>
               </td>
               <td class="title">
                 <a style="color:black" href='
                 <% if post.url=="" %>
-                  <%= "/post/id:#{post.id}" %>
+                  <%= "/posts/#{post.id}" %>
                 <% else %>
                   <%= post.url %>
                 <% end %>'><%= post.title %></a>
@@ -77,8 +78,8 @@
                 </center>
               </td>
               <td class="subtext"> by 
-                <a href="user?id=<%= post.user.id %>"><%= post.user.username %></a>  | 
-                <a href="item?id=<%= post.id %>">
+                <a href="/user/<%= post.user.id %>"><%= post.user.username %></a>  | 
+                <a href="/posts/<%= post.id %>">
                   <% if post.comments.count == 0 %>
                     discuss
                   <% else %>
