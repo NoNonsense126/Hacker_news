@@ -1,0 +1,39 @@
+body{
+	margin: 8px;
+	font-family: Verdana, Geneva, sans-serif;
+}
+.main-table {
+	border: 0px;
+	width: 85%;
+	background-color: #f6f6ef;
+	cellpadding: 0px;
+	cellspacing: 0px; 
+}
+
+.nav-bar {
+	background-color: #ff6000;
+	max-height: 24px;
+}
+
+.nav-bar table{
+	width: 100%;
+}
+
+.nav-bar table a{
+	font-size: 14px;
+	text-decoration: none;
+	color: black;
+	line-height: 12px;
+}
+
+.login_page {
+	margin:8px;
+	font-family: sans-serif;
+}
+
+.main-body td table tbody tr td{
+	align: right;
+	valign: top;
+	
+}
+
