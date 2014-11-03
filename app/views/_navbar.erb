@@ -1,0 +1,40 @@
+<tr class="nav-bar">
+      <td>
+        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="padding:2px">
+          <tbody>
+            <tr>
+              <td style="width:18px;padding-top:2px;padding-left:2px;padding-right:4px;">
+                <a href="http://www.ycombinator.com">
+                  <img src="https://news.ycombinator.com/y18.gif" width="18" height="18" style="border:1px #ffffff solid;"></a>
+              </td>
+              <td style="line-height:12pt; height:10px;">
+                <span class="pagetop">
+                  <b>
+                    <a href="/news">Hacker News</a>
+                  </b>
+                  <img src="https://news.ycombinator.com/s.gif" height="1" width="10">
+                  <a href="newest">new</a>
+                    | <a href="newcomments">comments</a>
+                    | <a href="show">show</a> 
+                    | <a href="ask">ask</a> 
+                    | <a href="jobs">jobs</a> 
+                    | <a href="/posts/new">submit</a>
+                </span>
+              </td>
+              <td style="text-align:right;padding-right:4px;">
+                <span class="pagetop">
+                  <% p '----->' %>
+                  <% p session %>
+                  <% if session[:username] %>
+                    <a href="/users/<%= User.find_by(username: session[:username]).id %>"> <%= session[:username] %> </a>
+                    | <a href="/logout">logout</a>
+                  <% else %>
+                    <a href="/login?whence=<%= request.path[1..-1] %>">login</a>
+                  <% end %>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>

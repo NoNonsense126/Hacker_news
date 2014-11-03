@@ -27,3 +27,7 @@ get '/news' do
   @posts = Post.last(30)
   erb :home
 end
+
+get '/test' do
+	erb :test
+end

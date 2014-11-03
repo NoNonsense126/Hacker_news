@@ -1,44 +1,7 @@
 <body>
 <center>
   <table class="main-table">
-    <tr class="nav-bar">
-      <td>
-        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="padding:2px">
-          <tbody>
-            <tr>
-              <td style="width:18px;padding-top:2px;padding-left:2px;padding-right:4px;">
-                <a href="http://www.ycombinator.com">
-                  <img src="https://news.ycombinator.com/y18.gif" width="18" height="18" style="border:1px #ffffff solid;"></a>
-              </td>
-              <td style="line-height:12pt; height:10px;">
-                <span class="pagetop">
-                  <b>
-                    <a href="/news">Hacker News</a>
-                  </b>
-                  <img src="https://news.ycombinator.com/s.gif" height="1" width="10">
-                  <a href="newest">new</a>
-                    | <a href="newcomments">comments</a>
-                    | <a href="show">show</a> 
-                    | <a href="ask">ask</a> 
-                    | <a href="jobs">jobs</a> 
-                    | <a href="/posts/new">submit</a>
-                </span>
-              </td>
-              <td style="text-align:right;padding-right:4px;">
-                <span class="pagetop">
-                  <% if @username %>
-                    <a> <%= @username %> </a>
-                    | <a href="/logout">logout</a>
-                  <% else %>
-                    <a href="/login?whence=<%= request.path[1..-1] %>">login</a>
-                  <% end %>
-                </span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </td>
-    </tr>
+    <%= erb :_navbar %>
     <tr style="height:10px"></tr>
     <tr class = "main-body">
       <td>
@@ -75,7 +38,7 @@
                 </center>
               </td>
               <td class="subtext"> by 
-                <a href="/user/<%= @post.user.id %>"><%= @post.user.username %></a>  | 
+                <a href="/users/<%= @post.user.id %>"><%= @post.user.username %></a>  | 
                 <a href="/posts/<%= @post.id %>">
                   <% if @post.comments.count == 0 %>
                     discuss
@@ -88,14 +51,30 @@
                     <% end %>
                   <% end %>
                   </a>
+                  <% if @post.user.username == session[:username] %>
+                    |<a href="/posts/<%= @post.id %>/edit"> edit</a>
+                   <% end %> 
+                  <% if @post.user.username == session[:username] %>
+                   | <a href="/posts/<%= @post.id %>/confirm"> delete</a>
+                  <% end %>
               </td>
             </tr>
 	        	<tr style="height:10px"></tr>
+            <tr>
+              <td>
+              </td>
+              <td>
+                <%= @post.text %>
+              </td>
+            </tr>
+            <tr style="height:10px"></tr>
+            <tr>
 	        	<tr>
 	        		<td></td>
 	        		<td>
 	        			<form method="post" action="/comments/new">
-	        				<textarea name="text" rows="6" cols="60"></textarea>
+	        				<input type="hidden" name="post_id" value="<%= @post.id %>">
+	        				<textarea name="body" rows="6" cols="60"></textarea>
 	        				<br>
 	        				<br>
 	        				<input type="submit" value="add comment">

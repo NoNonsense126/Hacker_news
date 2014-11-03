@@ -1,0 +1,41 @@
+<body>
+<center>
+  <table class="main-table">
+    <%= erb :_navbar%>
+    <tr style="height:10px"></tr>
+    <tr class = "main-body">
+      <td>
+        <table>
+          <tbody>
+            <tr>
+              <td>
+                <center>
+                  <a id="up_8542706" href="">
+                    <div class="votearrow" title="upvote"></div>
+                  </a>
+                  <span id="down_8542706"></span>
+                </center>
+              </td>
+              <td class="title">
+                <a style="color:black" href='comments/<%= @comment.id %>'><%= @comment.body %></a>
+              </td>
+            </tr>
+            <tr style="height:10px"></tr>
+          </tbody>
+          <tr>
+              <td></td>
+              <td>Delete Comment?
+                <form method="post" action="/comments/<%= @comment.id %>">
+                  <input value="delete" type="hidden" name="_method">
+                  <input type="submit" value="delete">
+                </form>
+              </td>
+            </tr>
+        </table>
+      </td>
+    </tr>
+    
+  </table>
+  
+</center>
+</body>

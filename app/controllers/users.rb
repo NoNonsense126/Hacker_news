@@ -35,3 +35,25 @@ get '/logout' do
 	session[:username] = nil
 	redirect "/"
 end
+
+get '/users/:id' do
+	@user = User.find_by(id: params[:id])
+	erb :'users/profile'
+end
+
+put '/users/:id' do
+	@user = User.find_by(id: params[:id])
+	@user.update(about: params[:about], email: params[:email])
+	@updated = true
+	erb :'users/profile'
+end
+
+get '/users/:id/posts' do
+	@posts = Post.where(user_id: params[:id])
+	erb :home
+end
+
+get '/users/:id/comments' do
+	@comments = Comment.where(user_id: params[:id])
+	erb :'users/comments'
+end

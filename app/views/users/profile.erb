@@ -1,0 +1,93 @@
+<body>
+<center>
+  <table class="main-table">
+    <%= erb :_navbar %>
+    <tr style="height:10px"></tr>
+    <tr>
+    	<td>
+    		<table border="0" cellpadding="0" cellspacing="0">
+    			<tbody>
+    				<tr>
+    					<td bgcolor="#ffffaa">
+    						<table cellpadding="5" width="100%">
+    							<tbody>
+    								<tr>
+    									<td> Please put a valid address in the email field, or we won't be able to send you a new password if you forget yours.  Your address is only visible to you and us.  Crawlers and other users can't see it.
+	  									</td>
+	  								</tr>
+	  							</tbody>
+	  						</table>
+	  					</td>
+	  				</tr>
+	  			</tbody>
+	  		</table>
+	  		<form method="post" action="/users/<%= @user.id %>">
+	  			<input type="hidden" value="put" name="_method">
+	  			<table border="0">
+	  				<tbody>
+	  					<% if @updated %>
+  							<tr>
+  								<td style="color:red">Updated</td>
+  							</tr>
+  							<br>
+  							<tr>
+  								<td><br></td>
+  							</tr>
+	  					<% end %>
+	  					<tr>
+	  						<td valign="top">user:</td>
+	  						<td><%= @user.username %></td>
+	  					</tr>
+	  					<tr>
+	  						<td valign="top">created at:</td>
+	  						<td><%= @user.created_at %></td>
+	  					</tr>
+	  					<tr>
+	  						<td valign="top">about:</td>
+	  						<td>
+	  							<textarea cols="60" rows="5" wrap="virtual" name="about"><%= @user.about %></textarea> 
+	  						</td>
+	  					</tr>
+	  					<tr>
+	  						<td valign="top">email:</td>
+	  						<td>
+	  							<input type="text" name="email" value="<%= @user.email %>" value="" size="60">
+	  						</td>
+							</tr>							
+							<tr>
+								<td></td>
+								<td>
+									<a href="/users/<%= @user.id %>/edit">
+										<u>change password</u>
+									</a>
+								</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>
+									<a href="/users/<%= @user.id %>/posts">
+										<u>submissions</u>
+									</a>
+								</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>
+									<a href="/users/<%= @user.id %>/comments">
+										<u>comments</u>
+									</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<br>
+					<input type="submit" value="update">
+				</form>
+				<br>
+				<br>
+			</td>
+		</tr>    
+	</table>
+  
+</center>
+</body>
