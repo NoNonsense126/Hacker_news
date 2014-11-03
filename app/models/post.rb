@@ -4,4 +4,7 @@ class Post < ActiveRecord::Base
 	belongs_to :user
 	has_many :comments
 
+  def self.top
+    order('post_votes_count DESC')
+  end
 end
