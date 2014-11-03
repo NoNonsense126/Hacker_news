@@ -16,7 +16,15 @@ get '/' do
   if login?
   	@username = session[:username]
   end
-  @posts = Post.last(30)
+  @posts = Post.last(30).reverse
+  erb :home
+end
+
+get '/topvoted' do
+  if login?
+    @username = session[:username]
+  end
+  @posts = Post.top
   erb :home
 end
 

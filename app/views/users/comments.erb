@@ -8,12 +8,17 @@
         <table>
           <tbody>
             <% @comments.each_with_index do |comment, index|%>
+            <% if comment.comment_votes.find_by(user_id: User.find_by(username: session[:username]).id) %>
+              <% @commentclass = "voted" %>
+            <% else %>
+              <% @commentclass = "votearrow" %>
+            <% end %>
             <tr>
               <td class="title"><%= index + 1 %></td>
               <td>
                 <center>
-                  <a id="up_8542706" href="vote?for=8542706&amp;dir=up&amp;whence=%69%74%65%6d%3f%69%64%3d%38%35%34%32%37%30%36">
-                    <div class="votearrow" title="upvote"></div>
+                  <a class="vote comment<%= comment.id %>" href="/comments/<%= comment.id %>/upvote">
+                    <div class=" <%= @commentclass %>" title="upvote"></div>
                   </a>
                   <span id="down_8542706"></span>
                 </center>
@@ -26,8 +31,8 @@
               <td colspan="1"></td>
               <td>
                 <center>
-                  <a id="up_8540279">
-                    <div class="votearrow rotate180" title="upvote"></div>
+                  <a class="vote comment<%= comment.id %>" href="/comments/<%= comment.id %>/downvote">
+                    <div class=" <%= @commentclass %> rotate180" title="upvote"></div>
                   </a>
                 </center>
               </td>

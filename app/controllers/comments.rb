@@ -33,3 +33,14 @@ delete '/comments/:id' do
 	Comment.find_by(id: params[:id]).destroy
 	redirect '/'
 end
+
+get '/comments/:id/upvote' do
+
+	p CommentVote.create(user_id: User.find_by(username: session[:username]).id, comment_id: params[:id],
+									votetype: true).errors
+end
+
+get '/comments/:id/downvote' do
+	CommentVote.create(user_id: User.find_by(username: session[:username]).id, comment_id: params[:id],
+									votetype: false)
+end

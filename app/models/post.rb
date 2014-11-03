@@ -3,4 +3,5 @@ class Post < ActiveRecord::Base
 	has_many :post_votes
 	belongs_to :user
 	has_many :comments
+
 end

@@ -40,3 +40,13 @@ delete '/posts/:id' do
 	comments.destroy_all if comments
 	redirect '/'
 end
+
+get '/posts/:id/upvote' do
+	PostVote.create(user_id: User.find_by(username: session[:username]).id, post_id: params[:id],
+									votetype: true)
+end
+
+get '/posts/:id/downvote' do
+	PostVote.create(user_id: User.find_by(username: session[:username]).id, post_id: params[:id],
+									votetype: false)
+end

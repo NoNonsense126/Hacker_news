@@ -1,0 +1,59 @@
+<% if @post.post_votes.find_by(user_id: User.find_by(username: session[:username]).id) %>
+  <% @class = "voted" %>
+<% else %>
+  <% @class = "votearrow" %>
+<% end %>
+<tr>
+  <td class="title"><%= @index + 1 %></td>
+  <td>
+    <center>
+      <a class="vote post<%= @post.id%>" href="/posts/<%= @post.id %>/upvote">
+        <div class=" <%= @class %>" title="upvote"></div>
+      </a>
+      <span id="down_8542706"></span>
+    </center>
+  </td>
+  <td class="title">
+    <a style="color:black" href='
+    <% if @post.url=="" %>
+      <%= "/posts/#{@post.id}" %>
+    <% else %>
+      <%= @post.url %>
+    <% end %>'><%= @post.title %></a>
+    <% @host_url = URI.parse(@post.url).host %>
+    <% if @host_url %>
+      <span class="comhead"> <%= "(" + @host_url.sub(/^www\./, '') + ")" %></span>
+    <% end %>
+  </td>
+</tr>
+<tr>
+  <td colspan="1"></td>
+  <td>
+    <center>
+      <a class="vote post<%= @post.id%>" href="/posts/<%= @post.id %>/downvote">
+        <div class="<%= @class %> rotate180" title="upvote"></div>
+      </a>
+    </center>
+  </td>
+  <td class="subtext"> by 
+    <a href="/users/<%= @post.user.id %>"><%= @post.user.username %></a>  | 
+    <a href="/posts/<%= @post.id %>">
+      <% if @post.comments.count == 0 %>
+        discuss
+      <% else %>
+        <%= @post.comments.count %> 
+        <% if @post.comments.count > 1 %>
+          comments
+        <% else %>
+          comment
+        <% end %> 
+      <% end %>
+      </a> 
+      <% if @post.user.username == session[:username] %>
+        |<a href="/posts/<%= @post.id %>/edit"> edit</a>
+      <% end %> 
+      <% if @post.user.username == session[:username] %>
+       | <a href="/posts/<%= @post.id %>/confirm"> delete</a>
+      <% end %>
+  </td>
+</tr>
